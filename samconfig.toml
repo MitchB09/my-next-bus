@@ -1,0 +1,21 @@
+version = 0.1
+[default.deploy.parameters]
+stack_name = "my-next-bus-dev"
+resolve_s3 = true
+s3_prefix = "my-next-bus-dev"
+region = "us-east-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "CertificateId=\"1bcfac7b-2374-4447-bfaa-2760e2dfb3f1\" Stage=\"dev\""
+image_repositories = []
+
+[prod.deploy.parameters]
+stack_name = "my-next-bus"
+resolve_s3 = true
+s3_prefix = "my-next-bus"
+region = "us-east-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"
+disable_rollback = false
+parameter_overrides = "CertificateId=\"1bcfac7b-2374-4447-bfaa-2760e2dfb3f1\" Stage=\"prod\""
+image_repositories = []

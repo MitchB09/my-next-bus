@@ -1,0 +1,198 @@
+{
+  "isStopCancelled": false,
+  "calls": [
+    {
+      "id": "l:100000001/dest1:100000007",
+      "calls": [
+        {
+          "id": "-2007600073",
+          "key": "0",
+          "lineId": 100000001,
+          "routeId": 680,
+          "journeyId": 1084154,
+          "stopPointId": 100000029,
+          "sequenceNumber": 33,
+          "line": "10N",
+          "lineAppearance": {
+            "background": "#000000",
+            "foreground": "#FFFFFF",
+            "fontStyle": "regular"
+          },
+          "journey": "863",
+          "destination": "CARLISLE",
+          "subdestination": "",
+          "departure": {
+            "journeyType": "Ordinary",
+            "forecastTime": "2025-12-31T22:15:00-04:00",
+            "plannedTime": "2025-12-31T22:15:00-04:00",
+            "quality": "timetable",
+            "attributes": [],
+            "designation": ""
+          },
+          "createdTime": "2026-01-01T02:05:13.0981358+00:00"
+        }
+      ]
+    },
+    {
+      "id": "l:100000002/dest1:100000008",
+      "calls": [
+        {
+          "id": "-2007600157",
+          "key": "1",
+          "lineId": 100000002,
+          "routeId": 717,
+          "journeyId": 1084079,
+          "stopPointId": 100000029,
+          "sequenceNumber": 24,
+          "line": "11S",
+          "lineAppearance": {
+            "background": "#000000",
+            "foreground": "#FFFFFF",
+            "fontStyle": "regular"
+          },
+          "journey": "26",
+          "destination": "PROSPECT",
+          "subdestination": "",
+          "departure": {
+            "journeyType": "Ordinary",
+            "forecastTime": "2025-12-31T22:15:00-04:00",
+            "plannedTime": "2025-12-31T22:15:00-04:00",
+            "quality": "timetable",
+            "attributes": [],
+            "designation": ""
+          },
+          "createdTime": "2026-01-01T02:05:13.0981358+00:00"
+        }
+      ]
+    },
+    {
+      "id": "l:100000003/dest1:100000009",
+      "calls": [
+        {
+          "id": "-2007600343",
+          "key": "2",
+          "lineId": 100000003,
+          "routeId": 637,
+          "journeyId": 1083895,
+          "stopPointId": 100000029,
+          "sequenceNumber": 22,
+          "line": "12N",
+          "lineAppearance": {
+            "background": "#000000",
+            "foreground": "#FFFFFF",
+            "fontStyle": "regular"
+          },
+          "journey": "16",
+          "destination": "BROOKSIDE",
+          "subdestination": "",
+          "departure": {
+            "journeyType": "Ordinary",
+            "forecastTime": "2025-12-31T22:15:00-04:00",
+            "plannedTime": "2025-12-31T22:15:00-04:00",
+            "quality": "timetable",
+            "attributes": [],
+            "designation": ""
+          },
+          "createdTime": "2026-01-01T02:05:13.0981358+00:00"
+        }
+      ]
+    },
+    {
+      "id": "l:100000004/dest1:100000010",
+      "calls": [
+        {
+          "id": "-2007600225",
+          "key": "3",
+          "lineId": 100000004,
+          "routeId": 725,
+          "journeyId": 1084003,
+          "stopPointId": 100000029,
+          "sequenceNumber": 32,
+          "line": "13S",
+          "lineAppearance": {
+            "background": "#000000",
+            "foreground": "#FFFFFF",
+            "fontStyle": "regular"
+          },
+          "journey": "16",
+          "destination": "PROSPECT",
+          "subdestination": "",
+          "departure": {
+            "journeyType": "Ordinary",
+            "forecastTime": "2025-12-31T22:15:00-04:00",
+            "plannedTime": "2025-12-31T22:15:00-04:00",
+            "quality": "timetable",
+            "attributes": [],
+            "designation": ""
+          },
+          "createdTime": "2026-01-01T02:05:13.0981358+00:00"
+        }
+      ]
+    },
+    {
+      "id": "l:100000005/dest1:100000011",
+      "calls": [
+        {
+          "id": "-2007600045",
+          "key": "4",
+          "lineId": 100000005,
+          "routeId": 709,
+          "journeyId": 1084194,
+          "stopPointId": 100000029,
+          "sequenceNumber": 21,
+          "line": "14N",
+          "lineAppearance": {
+            "background": "#000000",
+            "foreground": "#FFFFFF",
+            "fontStyle": "regular"
+          },
+          "journey": "21",
+          "destination": "BARKERS POINT",
+          "subdestination": "",
+          "departure": {
+            "journeyType": "Ordinary",
+            "forecastTime": "2025-12-31T22:15:00-04:00",
+            "plannedTime": "2025-12-31T22:15:00-04:00",
+            "quality": "timetable",
+            "attributes": [],
+            "designation": ""
+          },
+          "createdTime": "2026-01-01T02:05:13.0981358+00:00"
+        }
+      ]
+    },
+    {
+      "id": "l:100000007/dest1:100000013",
+      "calls": [
+        {
+          "id": "-2007600260",
+          "key": "5",
+          "lineId": 100000007,
+          "routeId": 652,
+          "journeyId": 1083980,
+          "stopPointId": 100000029,
+          "sequenceNumber": 20,
+          "line": "16N",
+          "lineAppearance": {
+            "background": "#000000",
+            "foreground": "#FFFFFF",
+            "fontStyle": "regular"
+          },
+          "journey": "151228",
+          "destination": "MARYSVILLE",
+          "subdestination": "",
+          "departure": {
+            "journeyType": "Ordinary",
+            "forecastTime": "2025-12-31T22:15:00-04:00",
+            "plannedTime": "2025-12-31T22:15:00-04:00",
+            "quality": "timetable",
+            "attributes": [],
+            "designation": ""
+          },
+          "createdTime": "2026-01-01T02:05:13.0981358+00:00"
+        }
+      ]
+    }
+  ],
+  "messages": []
+}

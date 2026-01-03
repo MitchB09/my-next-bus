@@ -1,0 +1,94 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: home-page
+
+Parameters:
+  CertificateId:
+    Type: String
+    Description: AWS Certificate ID
+  Stage:
+    Type: String
+    Description: The Stage where the application is running in, e.g., dev, prod.
+
+Conditions:
+  IsProduction: 
+    !Equals [!Ref Stage, "prod"]
+
+Globals:
+  Function:
+    Timeout: 5
+    Handler: index.handler
+    Runtime: nodejs22.x
+    Environment:
+      Variables:
+        RSS_TABLE: !Ref RssTable
+        TASKS_TABLE: !Ref TasksTable
+
+Resources:
+
+  S3Bucket:
+    Type: AWS::S3::Bucket
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        # Restricting access to cloudfront only.
+        Statement:
+          - Effect: Allow
+            Action: s3:GetObject
+            Resource:
+              - !Sub arn:aws:s3:::${S3Bucket}/*
+            Principal:
+              AWS: !Sub arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity
+                ${CloudFrontOriginAccessIdentity}
+
+  CloudFrontOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: Serverless website OA
+
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !If
+            - IsProduction
+            - !Sub my-next-bus.bilensky.ca
+            - !Ref AWS::NoValue
+        Origins:
+          - Id: s3-website
+            DomainName: !GetAtt S3Bucket.DomainName
+            S3OriginConfig:
+              # Restricting Bucket access through an origin access identity
+              OriginAccessIdentity: !Sub origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}
+        Enabled: true
+        DefaultRootObject: index.html
+        DefaultCacheBehavior:
+          Compress: true
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          ForwardedValues:
+            QueryString: false
+          TargetOriginId: s3-website
+          ViewerProtocolPolicy: redirect-to-https
+        PriceClass: PriceClass_100
+        ViewerCertificate:
+          SslSupportMethod: sni-only
+          AcmCertificateArn: !Sub arn:aws:acm:us-east-1:${AWS::AccountId}:certificate/${CertificateId}
+          MinimumProtocolVersion: TLSv1.2_2019
+
+Outputs:
+  S3Bucket:
+    Description: S3 Bucket Name
+    Value: !Ref S3Bucket
+  CloudFrontDisribution:
+    Description: CloudFront Distibution Id
+    Value: !Ref CloudFrontDistribution
+  CloudFrontDomain:
+    Description: CloudFront Domain Name
+    Value: !GetAtt CloudFrontDistribution.DomainName
