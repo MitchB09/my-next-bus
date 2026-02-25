@@ -1,10 +1,17 @@
 import { screen } from "@testing-library/react"
 import { App } from "./App"
 import { renderWithProviders } from "./utils/test-utils"
+import { trackedRoutes } from "./features/bus/busroutes"
 
 describe("App", () => {
   test("App includes app banner", () => {
-    renderWithProviders(<App />)
+    renderWithProviders(<App />, {
+      preloadedState: {
+        trackedRoutes: {
+          routes: trackedRoutes,
+        },
+      },
+    })
 
     // The app should be rendered correctly
     expect(screen.getByRole("banner")).toBeInTheDocument()
@@ -12,8 +19,14 @@ describe("App", () => {
   })
 
   test("App includes main content", () => {
-    renderWithProviders(<App />)
-
+    renderWithProviders(<App />, {
+      preloadedState: {
+        trackedRoutes: {
+          routes: trackedRoutes,
+        },
+      },
+    })
+    
     // The app should be rendered correctly
     expect(screen.getByRole("main")).toBeInTheDocument()
     expect(screen.getByRole("main")).toHaveTextContent("12N from Kingsplace")

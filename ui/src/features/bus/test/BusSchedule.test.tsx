@@ -4,7 +4,7 @@ import { expect, test } from "vitest"
 import { renderWithProviders } from "../../../utils/test-utils"
 import { BusSchedule } from "../BusSchedule"
 import { handlers } from "./mocks/handlers"
-import { FROM_HOME, FROM_OFFICE } from "../busroutes"
+import { FROM_HOME, FROM_OFFICE, trackedRoutes } from "../busroutes"
 
 const server = setupServer(...handlers)
 
@@ -20,7 +20,13 @@ afterAll(() => {
 
 describe("BusSchedule Componenet", () => {
   test("Includes Two Schedule Entries", async () => {
-    renderWithProviders(<BusSchedule />)
+    renderWithProviders(<BusSchedule />, {
+      preloadedState: {
+        trackedRoutes: {
+          routes: trackedRoutes
+        }
+      }
+    })
 
     expect(
       await screen.findByText(new RegExp(`^${FROM_HOME.name}$`)),

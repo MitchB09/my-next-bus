@@ -26,18 +26,18 @@ describe("BusRoute Componenet", () => {
       "https://myride.fredericton.ca/Tmix.Cap.Ti.Process.AnyRide/api/GetCalls",
       {
         method: "POST",
-        body: JSON.stringify({ query: { lineId: FROM_OFFICE.lineId }})
+        body: JSON.stringify({ query: { lineId: FROM_OFFICE.line?.id } }),
       },
     )
     await expect(response.json()).resolves.toEqual(fromOfficeResponse)
   })
 
-    test("Verify From Home Mocks", async () => {
+  test("Verify From Home Mocks", async () => {
     const response = await fetch(
       "https://myride.fredericton.ca/Tmix.Cap.Ti.Process.AnyRide/api/GetCalls",
       {
         method: "POST",
-        body: JSON.stringify({ query: { lineId: FROM_HOME.lineId }})
+        body: JSON.stringify({ query: { lineId: FROM_HOME.line?.id } }),
       },
     )
     await expect(response.json()).resolves.toEqual(fromHomeResponse)
@@ -46,6 +46,8 @@ describe("BusRoute Componenet", () => {
   test("Has a heading of provided name", async () => {
     renderWithProviders(<NextBusRoute route={FROM_HOME} />)
 
-    expect(await screen.findByText(new RegExp(`^${FROM_HOME.name}$`))).toBeInTheDocument()
+    expect(
+      await screen.findByText(new RegExp(`^${FROM_HOME.name}$`)),
+    ).toBeInTheDocument()
   })
 })
