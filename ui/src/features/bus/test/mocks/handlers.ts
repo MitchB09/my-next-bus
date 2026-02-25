@@ -10,10 +10,10 @@ export const handlers = [
     const data = await request.json() as unknown as Record<string, unknown>;
     const query = data.query as RouteRequestData;
 
-    switch (query.lineId) {
-      case FROM_HOME.lineId:
+    switch (query.line?.id) {
+      case FROM_HOME.line?.id:
          return HttpResponse.json(fromHomeResponse);
-      case FROM_OFFICE.lineId:
+      case FROM_OFFICE.line?.id:
         return HttpResponse.json(fromOfficeResponse);
       default:
         throw new Error('Unknown lineId provided')

@@ -1,14 +1,24 @@
 
+export type Line = {
+  id: number,
+  text: string,
+}
 
+export type Stop = {
+  id: number,
+  externalId: string
+  text: string,
+}
 
 export type BusRoute = {
+  id: string,
   name: string,
 } & RouteRequestData;
 
 export type RouteRequestData = {
   name: string,
-  fromStop: string,
-  lineId: number
+  fromStop?: string,
+  line?: Line,
 }
 
 export type Payload = {
