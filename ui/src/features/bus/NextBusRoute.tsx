@@ -4,13 +4,22 @@ import {
   Backdrop,
   Box,
   CircularProgress,
+  IconButton,
   Stack,
   Typography,
 } from "@mui/material"
-import { Error } from "@mui/icons-material"
-import { useGetNextBusQuery } from "./busStopApiSlice"
-import type { BusRoute } from "./types"
+import {
+  Error,
+  Edit as EditIcon,
+  Delete as DeleteIcon,
+} from "@mui/icons-material"
 import { format, differenceInMinutes } from "date-fns"
+import { useGetNextBusQuery } from "./busStopApiSlice"
+import { editRoute } from "./editDialogSlice"
+import { deleteRoute } from "./trackedRoutesSlice"
+import type { BusRoute } from "./types"
+
+import { useAppDispatch } from "../../app/hooks"
 
 export type BusRouteProps = {
   route: BusRoute
@@ -18,6 +27,7 @@ export type BusRouteProps = {
 
 export const NextBusRoute = (props: BusRouteProps): JSX.Element => {
   const { route } = props
+  const dispatch = useAppDispatch()
 
   const response = useGetNextBusQuery(route, {
     pollingInterval: 60 * 1000, //Poll every 60s
@@ -26,7 +36,35 @@ export const NextBusRoute = (props: BusRouteProps): JSX.Element => {
 
   return (
     <Stack direction="column" spacing={2} useFlexGap>
-      <Typography variant="h6">{route.name}</Typography>
+      <Box
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Typography variant="h6">{route.name}</Typography>
+        <Box>
+          <IconButton
+            size="large"
+            onClick={() => {
+              dispatch(editRoute(route))
+            }}
+            color="inherit"
+          >
+            <EditIcon />
+          </IconButton>
+          <IconButton
+            size="large"
+            onClick={() => {
+              dispatch(deleteRoute(route))
+            }}
+            color="inherit"
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Box>
+      </Box>
 
       <Backdrop
         sx={theme => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
@@ -49,14 +87,15 @@ export const NextBusRoute = (props: BusRouteProps): JSX.Element => {
       {response.data?.length
         ? response.data.map(run => {
             return (
-              <Stack direction="row" spacing={1}>
+              <Stack key={run.id} direction="row" spacing={1}>
                 <Box>
-                  {differenceInMinutes(run.departure.forecastTime, new Date())}min
+                  {differenceInMinutes(run.departure.forecastTime, new Date())}
+                  min
                 </Box>
                 <Box>{format(run.departure.forecastTime, "h:mm aa")}</Box>
                 <Box flexGrow={1} />
                 <Box>
-                  {(response.isFetching) && (
+                  {response.isFetching && (
                     <CircularProgress size="1em" color="inherit" />
                   )}
                 </Box>

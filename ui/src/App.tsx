@@ -4,6 +4,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles"
 import "./App.css"
 import { MenuAppBar } from "./MenuAppBar"
 import { BusSchedule } from "./features/bus/BusSchedule"
+import { RouteDialog } from './features/bus/RouteDialog'
 
 export const darkTheme = createTheme({
   palette: {
@@ -18,6 +19,7 @@ export const App = () => {
       <MenuAppBar />
       <main className="App-header">
         <BusSchedule />
+        <RouteDialog />
       </main>
     </ThemeProvider>
   )

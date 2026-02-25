@@ -26,10 +26,12 @@
     "axios": "^1.11.0",
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
+    "js-cookie": "^3.0.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
-    "styled-components": "^6.1.19"
+    "styled-components": "^6.1.19",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
@@ -38,6 +40,7 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/axios": "^0.14.4",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.14.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",
