@@ -1,7 +1,7 @@
 import { type JSX } from "react"
 
 import {
-  Settings as SettingsIcon,
+  Add as AddIcon,
   Delete as DeleteIcon,
 } from "@mui/icons-material"
 import { AppBar, Toolbar, Typography } from "@mui/material"
@@ -26,7 +26,7 @@ export const MenuAppBar = (): JSX.Element => {
           }}
           color="inherit"
         >
-          <SettingsIcon />
+          <AddIcon />
         </IconButton>
         <IconButton
           size="large"

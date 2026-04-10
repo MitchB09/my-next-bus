@@ -50,6 +50,9 @@ export const editDialogSlice = createSlice({
       state.form = undefined
     },
     setRoute: (state, { payload: route }: PayloadAction<BusRouteForm>) => {
+      if (state.form && route.name !== state.form.name) {
+        state.form.nameEdited = true
+      }
       if (!state.form?.nameEdited) {
         route.name = `${route.line?.text ?? ""} from ${route.fromStop ?? ""}`
       }
@@ -57,13 +60,15 @@ export const editDialogSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(saveRoute.fulfilled, state => {
-      state.open = false
-      state.editing = false
-    })
-    .addCase(saveRoute.rejected, (payload) => {
-      console.dir(payload)
-    })
+    builder
+      .addCase(saveRoute.fulfilled, state => {
+        state.open = false
+        state.form = undefined
+        state.editing = false
+      })
+      .addCase(saveRoute.rejected, payload => {
+        console.dir(payload)
+      })
   },
 })
 
@@ -78,7 +83,7 @@ export const selectEditing = (state: RootState) => state.editDialog.editing
 export const selectForm = (state: RootState): BusRouteForm => {
   if (!state.editDialog.form) {
     return {
-      id: '-1',
+      id: "-1",
       name: "",
       lineId: 100000003,
       nameEdited: false,

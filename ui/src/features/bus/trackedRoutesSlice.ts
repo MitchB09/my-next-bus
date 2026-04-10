@@ -7,6 +7,12 @@ import type { BusRoute } from "./types"
 
 const data = JSON.parse(Cookies.get("routes") ?? "[]") as BusRoute[]
 
+const defaultConfig = { 
+  expires: 400, // Expire in 400 Days
+  secure: true,
+  sameSite: "strict"
+} as Cookies.CookieAttributes;
+
 type TrackedRoutesState = {
   routes: BusRoute[]
 }
@@ -36,7 +42,7 @@ export const trackedRoutesSlice = createSlice({
       }
 
       state.routes = routes
-      Cookies.set("routes", JSON.stringify(routes))
+      Cookies.set("routes", JSON.stringify(routes), defaultConfig)
     },
     deleteRoute: (state, { payload: route }: PayloadAction<BusRoute>) => {
       const routes = [...state.routes]
@@ -51,7 +57,7 @@ export const trackedRoutesSlice = createSlice({
       routes.splice(idx, 1)
 
       state.routes = routes
-      Cookies.set("routes", JSON.stringify(routes))
+      Cookies.set("routes", JSON.stringify(routes), defaultConfig)
     },
     clearSavedData: state => {
       state.routes = []
