@@ -86,7 +86,7 @@ Outputs:
   S3Bucket:
     Description: S3 Bucket Name
     Value: !Ref S3Bucket
-  CloudFrontDisribution:
+  CloudFrontDistribution:
     Description: CloudFront Distibution Id
     Value: !Ref CloudFrontDistribution
   CloudFrontDomain:
