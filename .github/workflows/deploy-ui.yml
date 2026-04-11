@@ -20,10 +20,10 @@ jobs:
     environment: main
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v6
       
     - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ env.NODE_VERSION }}
 
@@ -33,14 +33,18 @@ jobs:
         npm install
         npm run lint
         npm run test
+        cd ../
+
+    - name: Build
+      run: |
+        cd ui
         npm run build
         cd ../
-    
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v6.1.0
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        role-to-assume: ${{ vars.AWS_ROLE_ARN }}
         aws-region: us-east-1
     
     - name: Set AWS S3 Bucket Values from Stack Output
