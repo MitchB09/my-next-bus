@@ -42,6 +42,7 @@ export const MenuAppBar = (): JSX.Element => {
         </IconButton>
         <IconButton
           size="large"
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onClick={handleDelete}
           color="inherit"
         >
