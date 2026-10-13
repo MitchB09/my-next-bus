@@ -19,10 +19,6 @@ Globals:
     Timeout: 5
     Handler: index.handler
     Runtime: nodejs22.x
-    Environment:
-      Variables:
-        RSS_TABLE: !Ref RssTable
-        TASKS_TABLE: !Ref TasksTable
 
 Resources:
 
@@ -62,6 +58,45 @@ Resources:
       AllowedOAuthScopes:
         - email
         - openid
+
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref Stage
+      Cors:
+        AllowOrigin: '''*'''
+        AllowHeaders: '''Content-Type,X-Amz-Date,Authorization,X-Amz-Security-Token'''
+        AllowMethods: '''GET,POST,OPTIONS,PUT,DELETE'''
+        MaxAge: '''600'''
+      Domain:
+        DomainName: !If [IsProduction, !Sub 'bus-api.bilensky.ca', !Sub 'bus-api-${Stage}.bilensky.ca' ]
+        CertificateArn: !Sub arn:aws:acm:us-east-1:${AWS::AccountId}:certificate/${CertificateId}
+        SecurityPolicy: TLS_1_2
+      Auth:
+        DefaultAuthorizer: CognitoAuthorizer
+        AddDefaultAuthorizerToCorsPreflight: false
+        Authorizers:
+          CognitoAuthorizer:
+            UserPoolArn: !ImportValue "bilensky-auth-UserPoolArn"
+
+  ApiGetRoute:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambdas/GetRoute
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /route
+            Method: get
+            RestApiId: !Ref ApiGatewayApi
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2020
 
   S3Bucket:
     Type: AWS::S3::Bucket

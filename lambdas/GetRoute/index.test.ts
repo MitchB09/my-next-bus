@@ -1,10 +1,8 @@
 import { describe, expect, beforeEach, it, jest } from "@jest/globals";
 import axios, { AxiosError } from "axios";
-import { readFileSync } from "fs";
 import { handler } from "./index";
 import { mockContext, mockEvent } from "../mocks/mocks";
 import fromHomeResponse from "../mocks/fromHomeResponse.json";
-import fromOfficeResponse from "../mocks/fromOfficeResponse.json";
 
 // Mock jest and set the type
 jest.mock("axios");
@@ -26,7 +24,7 @@ describe("Index.js", () => {
     const response = await handler(
       {
         ...mockEvent,
-        multiValueQueryStringParameters: {
+        queryStringParameters: {
           fromStop: "12N",
           lineId: 100000003,
         },
@@ -72,7 +70,7 @@ describe("Index.js", () => {
     const response = await handler(
       {
         ...mockEvent,
-        multiValueQueryStringParameters: {
+        queryStringParameters: {
           lineId: 100000003,
         },
       },
@@ -89,7 +87,7 @@ describe("Index.js", () => {
     const response = await handler(
       {
         ...mockEvent,
-        multiValueQueryStringParameters: {
+        queryStringParameters: {
           fromStop: "12N",
         },
       },
@@ -112,7 +110,7 @@ describe("Index.js", () => {
     const response = await handler(
       {
         ...mockEvent,
-        multiValueQueryStringParameters: {
+        queryStringParameters: {
           fromStop: "12N",
           lineId: 100000003,
         },
@@ -131,7 +129,7 @@ describe("Index.js", () => {
     const response = await handler(
       {
         ...mockEvent,
-        multiValueQueryStringParameters: {
+        queryStringParameters: {
           fromStop: "12N",
           lineId: 100000003,
         },

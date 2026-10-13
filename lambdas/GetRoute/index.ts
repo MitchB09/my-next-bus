@@ -12,10 +12,10 @@ class ValidationError extends Error {
 export const handler = async (event: any, context: Context) => {
 
   try {
-    if (!event.multiValueQueryStringParameters || !event.multiValueQueryStringParameters.fromStop) {
+    if (!event.queryStringParameters || !event.queryStringParameters.fromStop) {
       throw new ValidationError("fromStop parameter not provided")
     }
-    if (!event.multiValueQueryStringParameters.lineId) {
+    if (!event.queryStringParameters.lineId) {
       throw new ValidationError("lineId parameter not provided")
     }
 
@@ -29,8 +29,8 @@ export const handler = async (event: any, context: Context) => {
       query: {
           toStopAreaName: "",
           directionId: 0,
-          fromStopAreaQuery: event.multiValueQueryStringParameters.fromStop,
-          lineId: event.multiValueQueryStringParameters.lineId,
+          fromStopAreaQuery: event.queryStringParameters.fromStop,
+          lineId: event.queryStringParameters.lineId,
       }
     }
 
