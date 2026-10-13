@@ -26,6 +26,43 @@ Globals:
 
 Resources:
 
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: !Sub '${AWS::StackName}-${Stage}-user-pool-client'
+      UserPoolId: !ImportValue "bilensky-auth-UserPoolId"
+      GenerateSecret: false
+      ExplicitAuthFlows:
+        - ALLOW_USER_PASSWORD_AUTH
+        - ALLOW_USER_SRP_AUTH
+      AllowedOAuthFlows:
+        - code
+        - implicit
+      AllowedOAuthFlowsUserPoolClient: true
+      SupportedIdentityProviders:
+        - COGNITO
+      CallbackURLs:
+        - !If
+          - IsProduction
+          - !Sub 'https://my-next-bus.bilensky.ca'
+          - !Sub 'https://my-next-bus-${Stage}.bilensky.ca'
+        - !If
+          - IsProduction
+          - !Ref "AWS::NoValue"
+          - 'https://local.bilensky.ca:3000'
+      LogoutURLs:
+        - !If
+          - IsProduction
+          - !Sub 'https://my-next-bus.bilensky.ca'
+          - !Sub 'https://my-next-bus-${Stage}.bilensky.ca'
+        - !If
+          - IsProduction
+          - !Ref "AWS::NoValue"
+          - 'https://local.bilensky.ca:3000'
+      AllowedOAuthScopes:
+        - email
+        - openid
+
   S3Bucket:
     Type: AWS::S3::Bucket
   S3BucketPolicy:
