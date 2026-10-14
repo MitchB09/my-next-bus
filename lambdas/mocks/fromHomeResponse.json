@@ -1,0 +1,38 @@
+{
+  "isStopCancelled": false,
+  "calls": [
+    {
+      "id": "l:100000004/dest1:100000010",
+      "calls": [
+        {
+          "id": "-2007599858",
+          "key": "0",
+          "lineId": 100000004,
+          "routeId": 725,
+          "journeyId": 1084003,
+          "stopPointId": 100000400,
+          "sequenceNumber": 28,
+          "line": "13S",
+          "lineAppearance": {
+            "background": "#000000",
+            "foreground": "#FFFFFF",
+            "fontStyle": "regular"
+          },
+          "journey": "16",
+          "destination": "PROSPECT",
+          "subdestination": "",
+          "departure": {
+            "journeyType": "Ordinary",
+            "forecastTime": "2025-12-31T21:59:00-04:00",
+            "plannedTime": "2025-12-31T21:59:00-04:00",
+            "quality": "timetable",
+            "attributes": [],
+            "designation": ""
+          },
+          "createdTime": "2026-01-01T01:28:12.9642709+00:00"
+        }
+      ]
+    }
+  ],
+  "messages": []
+}

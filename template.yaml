@@ -19,12 +19,123 @@ Globals:
     Timeout: 5
     Handler: index.handler
     Runtime: nodejs22.x
-    Environment:
-      Variables:
-        RSS_TABLE: !Ref RssTable
-        TASKS_TABLE: !Ref TasksTable
 
 Resources:
+
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: !Sub '${AWS::StackName}-${Stage}-user-pool-client'
+      UserPoolId: !ImportValue "bilensky-auth-UserPoolId"
+      GenerateSecret: false
+      ExplicitAuthFlows:
+        - ALLOW_USER_PASSWORD_AUTH
+        - ALLOW_USER_SRP_AUTH
+      AllowedOAuthFlows:
+        - code
+        - implicit
+      AllowedOAuthFlowsUserPoolClient: true
+      SupportedIdentityProviders:
+        - COGNITO
+      CallbackURLs:
+        - !If
+          - IsProduction
+          - !Sub 'https://my-next-bus.bilensky.ca'
+          - !Sub 'https://my-next-bus-${Stage}.bilensky.ca'
+        - !If
+          - IsProduction
+          - !Ref "AWS::NoValue"
+          - 'https://local.bilensky.ca:3000'
+      LogoutURLs:
+        - !If
+          - IsProduction
+          - !Sub 'https://my-next-bus.bilensky.ca'
+          - !Sub 'https://my-next-bus-${Stage}.bilensky.ca'
+        - !If
+          - IsProduction
+          - !Ref "AWS::NoValue"
+          - 'https://local.bilensky.ca:3000'
+      AllowedOAuthScopes:
+        - email
+        - openid
+
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref Stage
+      Cors:
+        AllowOrigin: "'*.bilensky.ca'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Amz-Security-Token'"
+        AllowMethods: "'GET,POST,OPTIONS,PUT,DELETE'"
+        AllowCredentials: true
+        MaxAge: "'600'"
+      Domain:
+        DomainName: !If [IsProduction, !Sub 'bus-api.bilensky.ca', !Sub 'bus-api-${Stage}.bilensky.ca' ]
+        CertificateArn: !Sub arn:aws:acm:us-east-1:${AWS::AccountId}:certificate/${CertificateId}
+        SecurityPolicy: TLS_1_2
+      Auth:
+        DefaultAuthorizer: CognitoAuthorizer
+        AddDefaultAuthorizerToCorsPreflight: false
+        Authorizers:
+          CognitoAuthorizer:
+            UserPoolArn: !ImportValue "bilensky-auth-UserPoolArn"
+
+  ApiGetLines:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambdas/GetLines
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /lines
+            Method: get
+            RestApiId: !Ref ApiGatewayApi
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2020
+
+  ApiGetStops:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambdas/GetStops
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /stops
+            Method: get
+            RestApiId: !Ref ApiGatewayApi
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2020
+  
+  ApiGetRoute:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambdas/GetRoute
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /route
+            Method: get
+            RestApiId: !Ref ApiGatewayApi
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2020
 
   S3Bucket:
     Type: AWS::S3::Bucket
@@ -92,3 +203,12 @@ Outputs:
   CloudFrontDomain:
     Description: CloudFront Domain Name
     Value: !GetAtt CloudFrontDistribution.DomainName
+  CognitoUserPool: 
+    Description: Cognito User Pool Id
+    Value: !ImportValue "bilensky-auth-UserPoolId"
+  CognitoClient: 
+    Description: Cognito Client Id
+    Value: !Ref UserPoolClient
+  ApiGatewayUrl:
+    Description: API Gateway endpoint URL
+    Value: !If [IsProduction, !Sub 'bus-api.bilensky.ca', !Sub 'bus-api-${Stage}.bilensky.ca']

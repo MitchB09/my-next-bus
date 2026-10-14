@@ -1,0 +1,326 @@
+[
+  {
+    "id": 100000679,
+    "externalId": "99999999",
+    "text": "Northside Depot (99999999)",
+    "location": null
+  },
+  {
+    "id": 100000002,
+    "externalId": "1000",
+    "text": "Kings Place (1000)",
+    "location": null
+  },
+  {
+    "id": 100000010,
+    "externalId": "1001",
+    "text": "Killarney Lodge (1001)",
+    "location": null
+  },
+  {
+    "id": 100000273,
+    "externalId": "2074",
+    "text": "Regent Mall (2074)",
+    "location": null
+  },
+  {
+    "id": 100000503,
+    "externalId": "5040",
+    "text": "TD Bank and/et Prospect (5040)",
+    "location": null
+  },
+  {
+    "id": 100000667,
+    "externalId": "8005",
+    "text": "Fredericton HS (8005)",
+    "location": null
+  },
+  {
+    "id": 100000078,
+    "externalId": "1071",
+    "text": "Prospect and/et Smythe (1071)",
+    "location": null
+  },
+  {
+    "id": 100000079,
+    "externalId": "1072",
+    "text": "Prospect and/et Smythe (1072)",
+    "location": null
+  },
+  {
+    "id": 100000082,
+    "externalId": "1075",
+    "text": "Greenfields and/et Prospect (1075)",
+    "location": null
+  },
+  {
+    "id": 100000083,
+    "externalId": "1076",
+    "text": "Greenfields (1076)",
+    "location": null
+  },
+  {
+    "id": 100000084,
+    "externalId": "1078",
+    "text": "Parkside (1078)",
+    "location": null
+  },
+  {
+    "id": 100000085,
+    "externalId": "1079",
+    "text": "Parkside and/et Meadow Green (1079)",
+    "location": null
+  },
+  {
+    "id": 100000087,
+    "externalId": "1081",
+    "text": "Smythe and/et Beechwood (1081)",
+    "location": null
+  },
+  {
+    "id": 100000089,
+    "externalId": "1083",
+    "text": "Smythe and/et Montgomery (1083)",
+    "location": null
+  },
+  {
+    "id": 100000091,
+    "externalId": "1085",
+    "text": "Smythe and/et Kings College (1085)",
+    "location": null
+  },
+  {
+    "id": 100000093,
+    "externalId": "1087",
+    "text": "Smythe and/et Connaught (1087)",
+    "location": null
+  },
+  {
+    "id": 100000094,
+    "externalId": "1088",
+    "text": "Waggoners and/et Simpson (1088)",
+    "location": null
+  },
+  {
+    "id": 100000095,
+    "externalId": "1089",
+    "text": "Waggoners and/et Rookwood (1089)",
+    "location": null
+  },
+  {
+    "id": 100000098,
+    "externalId": "1092",
+    "text": "Kinsmen Court (1092)",
+    "location": null
+  },
+  {
+    "id": 100000099,
+    "externalId": "1093",
+    "text": "Hanwell and/et Valley Trail (1093)",
+    "location": null
+  },
+  {
+    "id": 100000100,
+    "externalId": "1094",
+    "text": "Woodstock and/et Hanwell (1094)",
+    "location": null
+  },
+  {
+    "id": 100000102,
+    "externalId": "1096",
+    "text": "Delta Hotel (1096)",
+    "location": null
+  },
+  {
+    "id": 100000103,
+    "externalId": "1097",
+    "text": "Woodstock and/et Rookwood (1097)",
+    "location": null
+  },
+  {
+    "id": 100000104,
+    "externalId": "1098",
+    "text": "Wilmot Park (1098)",
+    "location": null
+  },
+  {
+    "id": 100000416,
+    "externalId": "4038",
+    "text": "Graystone (4038)",
+    "location": null
+  },
+  {
+    "id": 100000003,
+    "externalId": "10001",
+    "text": "NBCCD (10001)",
+    "location": null
+  },
+  {
+    "id": 100000106,
+    "externalId": "1101",
+    "text": "City Hall (1101)",
+    "location": null
+  },
+  {
+    "id": 100000107,
+    "externalId": "1102",
+    "text": "Maple and/et Douglas (1102)",
+    "location": null
+  },
+  {
+    "id": 100000109,
+    "externalId": "1104",
+    "text": "Maple and/et Woodmount (1104)",
+    "location": null
+  },
+  {
+    "id": 100000111,
+    "externalId": "1106",
+    "text": "Maple and/et MacDonald (1106)",
+    "location": null
+  },
+  {
+    "id": 100000187,
+    "externalId": "201319",
+    "text": "Maple and/et Fulton (201319)",
+    "location": null
+  },
+  {
+    "id": 100000112,
+    "externalId": "1110",
+    "text": "Hickory (1110)",
+    "location": null
+  },
+  {
+    "id": 100000113,
+    "externalId": "1111",
+    "text": "Fulton and/et Hickory (1111)",
+    "location": null
+  },
+  {
+    "id": 100000114,
+    "externalId": "1112",
+    "text": "Nashwaaksis Field House (1112)",
+    "location": null
+  },
+  {
+    "id": 100000115,
+    "externalId": "1113",
+    "text": "Fulton and/et Carrington (1113)",
+    "location": null
+  },
+  {
+    "id": 100000116,
+    "externalId": "1114",
+    "text": "Fulton and/et Douglas (1114)",
+    "location": null
+  },
+  {
+    "id": 100000118,
+    "externalId": "1116",
+    "text": "Douglas and/et Brookside (1116)",
+    "location": null
+  },
+  {
+    "id": 100000119,
+    "externalId": "1117",
+    "text": "Brookside and/et Oakland (1117)",
+    "location": null
+  },
+  {
+    "id": 100000121,
+    "externalId": "1119",
+    "text": "Brookside and/et Westview (1119)",
+    "location": null
+  },
+  {
+    "id": 100000123,
+    "externalId": "1121",
+    "text": "Hawkins and/et Edgewood (1121)",
+    "location": null
+  },
+  {
+    "id": 100000653,
+    "externalId": "7008",
+    "text": "Hawkins and/et Royal (7008)",
+    "location": null
+  },
+  {
+    "id": 100000126,
+    "externalId": "1124",
+    "text": "Royal and/et William (1124)",
+    "location": null
+  },
+  {
+    "id": 100000128,
+    "externalId": "1126",
+    "text": "Windsor Court (1126)",
+    "location": null
+  },
+  {
+    "id": 100000130,
+    "externalId": "1128",
+    "text": "McKnight and/et Barton (1128)",
+    "location": null
+  },
+  {
+    "id": 100000131,
+    "externalId": "1129",
+    "text": "McKnight and/et Ashley (1129)",
+    "location": null
+  },
+  {
+    "id": 100000132,
+    "externalId": "1130",
+    "text": "Brookside Mall (1130)",
+    "location": null
+  },
+  {
+    "id": 100000133,
+    "externalId": "1131",
+    "text": "Brookside and/et Reynolds (1131)",
+    "location": null
+  },
+  {
+    "id": 100000135,
+    "externalId": "1133",
+    "text": "Terrence & Ferguson (1133)",
+    "location": null
+  },
+  {
+    "id": 100000137,
+    "externalId": "1135",
+    "text": "Brookside and/et Terrance (1135)",
+    "location": null
+  },
+  {
+    "id": 100000139,
+    "externalId": "1137",
+    "text": "Brookside and/et Peters (1137)",
+    "location": null
+  },
+  {
+    "id": 100000140,
+    "externalId": "1138",
+    "text": "Brookside and/et Heron (1138)",
+    "location": null
+  },
+  {
+    "id": 100000141,
+    "externalId": "1139",
+    "text": "Brookside and/et Jacob (1139)",
+    "location": null
+  },
+  {
+    "id": 100000142,
+    "externalId": "1140",
+    "text": "Brookside and/et Burns (1140)",
+    "location": null
+  },
+  {
+    "id": 100000143,
+    "externalId": "1141",
+    "text": "Brookside and/et Killarney (1141)",
+    "location": null
+  }
+]
