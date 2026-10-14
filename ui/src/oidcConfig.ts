@@ -14,7 +14,7 @@ export const oidcConfig = {
          document.title,
          window.location.pathname
      )
- },
+  },
 };
 
 export default oidcConfig;
