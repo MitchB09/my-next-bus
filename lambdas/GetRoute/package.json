@@ -2,7 +2,7 @@
   "name": "GetRoute",
   "version": "0.0.1",
   "description": "Pull upcoming bus schedule for provided stop",
-  "main": "index.jt",
+  "main": "index.ts",
   "scripts": {
     "test": "jest"
   },

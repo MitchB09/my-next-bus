@@ -79,6 +79,44 @@ Resources:
           CognitoAuthorizer:
             UserPoolArn: !ImportValue "bilensky-auth-UserPoolArn"
 
+  ApiGetLines:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambdas/GetLines
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /lines
+            Method: get
+            RestApiId: !Ref ApiGatewayApi
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2020
+
+  ApiGetStops:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambdas/GetStops
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /stops
+            Method: get
+            RestApiId: !Ref ApiGatewayApi
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2020
+  
   ApiGetRoute:
     Type: AWS::Serverless::Function
     Properties:

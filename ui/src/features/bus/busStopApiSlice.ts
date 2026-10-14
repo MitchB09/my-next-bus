@@ -39,11 +39,8 @@ export const busStopApiSlice = createApi({
     getLines: build.query<Line[], void>({
       query: () => {
         return {
-          url: `/GetLines`,
+          url: `/lines`,
           method: "GET",
-          params: {
-            _: 1771900730665,
-          },
         }
       },
       providesTags: ["BusLines"],
@@ -51,10 +48,10 @@ export const busStopApiSlice = createApi({
     getStops: build.query<Stop[], number>({
       query: (lineId: number) => {
         return {
-          url: `/GetStopAreas`,
-          method: "POST",
-          body: {
-            lineId,
+          url: `/stops`,
+          method: "GET",
+          params: {
+            lineId: lineId,
           },
         }
       },
@@ -63,12 +60,10 @@ export const busStopApiSlice = createApi({
     getNextBus: build.query<Run[], RouteRequestData>({
       query: (request: RouteRequestData) => {
         return {
-          url: `/GetCalls`,
-          method: "POST",
-          body: {
+          url: `/route`,
+          method: "GET",
+          params: {
             query: {
-              toStopAreaName: "",
-              directionId: 0,
               fromStopAreaQuery: request.fromStop,
               lineId: request.line?.id,
             },
