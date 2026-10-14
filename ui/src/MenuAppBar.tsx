@@ -1,8 +1,9 @@
 import { type JSX } from "react"
 
-import { Add as AddIcon, Delete as DeleteIcon } from "@mui/icons-material"
+import { Add as AddIcon, Delete as DeleteIcon, Logout } from "@mui/icons-material"
 import { AppBar, Toolbar, Typography } from "@mui/material"
 import { IconButton } from "@mui/material"
+import { useAuth } from "react-oidc-context"
 import { useAppDispatch } from "./app/hooks"
 import { createNewRoute } from "./features/bus/editDialogSlice"
 import { clearSavedData } from "./features/bus/trackedRoutesSlice"
@@ -10,13 +11,13 @@ import { useConfirm } from "./features/confirm/"
 
 export const MenuAppBar = (): JSX.Element => {
   const dispatch = useAppDispatch()
+  const auth = useAuth()
 
   const confirm = useConfirm()
   const handleDelete = async () => {
     const ok = await confirm({
       title: "Clear Routes",
-      content:
-        "Are you sure you want to delete all tracked routes?",
+      content: "Are you sure you want to delete all tracked routes?",
       confirmText: "Delete",
     })
 
@@ -48,6 +49,15 @@ export const MenuAppBar = (): JSX.Element => {
         >
           <DeleteIcon />
         </IconButton>
+        {auth.isAuthenticated && (
+          <IconButton
+            size="large"
+            onClick={() => void auth.removeUser()}
+            color="inherit"
+          >
+            <Logout />
+          </IconButton>
+        )}
       </Toolbar>
     </AppBar>
   )

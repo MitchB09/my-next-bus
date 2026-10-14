@@ -1,14 +1,34 @@
 // Need to use the React-specific entry point to import `createApi`
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 import type { Line, Payload, RouteRequestData, Run, Stop } from "./types"
+import { User } from "oidc-client-ts"
+import oidcConfig from "../../oidcConfig"
+
+function getUser() {
+  const storageKey = `oidc.user:${oidcConfig.authority}:${oidcConfig.client_id}`
+  const oidcStorage = sessionStorage.getItem(storageKey)
+  console.dir(storageKey)
+  console.dir(oidcStorage)
+  if (!oidcStorage) {
+    return null
+  }
+
+  return User.fromStorageString(oidcStorage)
+}
 
 // Define a service using a base URL and expected endpoints
 export const busStopApiSlice = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://myride.fredericton.ca/Tmix.Cap.Ti.Process.AnyRide/api",
-    headers: {
-      "anyride-profile-data": "cama_fredericton"
-    }
+    baseUrl: import.meta.env.VITE_PERSONAL_DOMAIN as string,
+    prepareHeaders: headers => {
+      const user = getUser()
+      const token = user?.id_token
+      if (!token) {
+        throw new Error("No Auth Token Found")
+      }
+      headers.set("Authorization", `Bearer ${token}`)
+      return headers
+    },
   }),
 
   reducerPath: "busRoutesApi",
@@ -22,8 +42,8 @@ export const busStopApiSlice = createApi({
           url: `/GetLines`,
           method: "GET",
           params: {
-            "_": 1771900730665
-          }
+            _: 1771900730665,
+          },
         }
       },
       providesTags: ["BusLines"],
@@ -34,8 +54,8 @@ export const busStopApiSlice = createApi({
           url: `/GetStopAreas`,
           method: "POST",
           body: {
-            lineId
-          }
+            lineId,
+          },
         }
       },
       providesTags: ["BusLines"],
@@ -56,11 +76,17 @@ export const busStopApiSlice = createApi({
           },
         }
       },
-      transformResponse: (response: Payload, _, request: RouteRequestData): Run[] => {
+      transformResponse: (
+        response: Payload,
+        _,
+        request: RouteRequestData,
+      ): Run[] => {
         return response.calls.length
-          ? response.calls.filter(
-              call => call.id.includes(`l:${request.line?.id.toString() ?? ''}/`),
-            ).flatMap(route => route.calls)
+          ? response.calls
+              .filter(call =>
+                call.id.includes(`l:${request.line?.id.toString() ?? ""}/`),
+              )
+              .flatMap(route => route.calls)
           : []
       },
       providesTags: ["BusRoutes"],
@@ -68,4 +94,5 @@ export const busStopApiSlice = createApi({
   }),
 })
 
-export const { useGetLinesQuery, useGetNextBusQuery, useGetStopsQuery } = busStopApiSlice
+export const { useGetLinesQuery, useGetNextBusQuery, useGetStopsQuery } =
+  busStopApiSlice

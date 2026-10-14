@@ -1,10 +1,12 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
+import { AuthProvider } from "react-oidc-context";
 import { Provider } from "react-redux"
 
 import { App } from "./App"
 import { store } from "./app/store"
 import "./index.css"
+import oidcConfig from "./oidcConfig";
 
 const container = document.getElementById("root")
 
@@ -13,9 +15,11 @@ if (container) {
 
   root.render(
     <StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <AuthProvider {...oidcConfig}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </AuthProvider>
     </StrictMode>,
   )
 } else {

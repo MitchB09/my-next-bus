@@ -164,3 +164,9 @@ Outputs:
   CloudFrontDomain:
     Description: CloudFront Domain Name
     Value: !GetAtt CloudFrontDistribution.DomainName
+  CognitoUserPool: 
+    Description: Cognito User Pool Id
+    Value: !ImportValue "bilensky-auth-UserPoolId"
+  CognitoClient: 
+    Description: Cognito Client Id
+    Value: !Ref UserPoolClient
