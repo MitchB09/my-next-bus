@@ -64,11 +64,10 @@ Resources:
     Properties:
       StageName: !Ref Stage
       Cors:
-        AllowOrigin: "'*.bilensky.ca'"
-        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Amz-Security-Token'"
-        AllowMethods: "'GET,POST,OPTIONS,PUT,DELETE'"
-        AllowCredentials: true
-        MaxAge: "'600'"
+        AllowOrigin: '''*'''
+        AllowHeaders: '''Content-Type,X-Amz-Date,Authorization,X-Amz-Security-Token'''
+        AllowMethods: '''GET,POST,OPTIONS,PUT,DELETE'''
+        MaxAge: '''600'''
       Domain:
         DomainName: !If [IsProduction, !Sub 'bus-api.bilensky.ca', !Sub 'bus-api-${Stage}.bilensky.ca' ]
         CertificateArn: !Sub arn:aws:acm:us-east-1:${AWS::AccountId}:certificate/${CertificateId}

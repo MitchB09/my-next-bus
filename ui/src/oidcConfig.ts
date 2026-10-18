@@ -6,9 +6,8 @@ export const oidcConfig = {
   redirect_uri: import.meta.env.VITE_REDIRECT_URL as string,
   response_type: "code",
   scope: "email openid",
-  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
-  onSigninCallback: (user: User | void): void => {
-    console.dir(user)
+  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type, @typescript-eslint/no-unused-vars
+  onSigninCallback: (_user: User | void): void => {
      window.history.replaceState(
          {},
          document.title,

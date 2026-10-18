@@ -33,7 +33,6 @@ export const RouteDialog = (): JSX.Element => {
   const open = useAppSelector(selectOpen)
   const editing = useAppSelector(selectEditing)
   const form = useAppSelector(selectForm)
-
   const linesResponse = useGetLinesQuery()
   const stopsResponse = useGetStopsQuery(form.line?.id ?? 0)
 

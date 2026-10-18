@@ -1,0 +1,21 @@
+{
+  "name": "Lambdas",
+  "version": "0.0.1",
+  "description": "Root project for lambdas",
+  "private": true,
+  "workspaces": [
+    "GetLines",
+    "GetRoute",
+    "GetStops"
+  ],
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "mitch.bilensky",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^30.0.5",
+    "ts-jest": "^29.4.1",
+    "typescript": "^5.9.2"
+  }
+}

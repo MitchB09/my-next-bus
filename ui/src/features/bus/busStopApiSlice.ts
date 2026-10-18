@@ -7,8 +7,6 @@ import oidcConfig from "../../oidcConfig"
 function getUser() {
   const storageKey = `oidc.user:${oidcConfig.authority}:${oidcConfig.client_id}`
   const oidcStorage = sessionStorage.getItem(storageKey)
-  console.dir(storageKey)
-  console.dir(oidcStorage)
   if (!oidcStorage) {
     return null
   }
@@ -63,11 +61,8 @@ export const busStopApiSlice = createApi({
           url: `/route`,
           method: "GET",
           params: {
-            query: {
-              fromStopAreaQuery: request.fromStop,
-              lineId: request.line?.id,
-            },
-            configuration: { grouping: ["Line", "Destination1"] },
+            fromStop: request.fromStop,
+            lineId: request.line?.id,
           },
         }
       },
