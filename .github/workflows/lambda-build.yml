@@ -1,5 +1,5 @@
 
-name: CI
+name: Test Backend
 env:
   NODE_VERSION: '22.x'   # set this to the node version to use
 
