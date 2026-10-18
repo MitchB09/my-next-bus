@@ -2,10 +2,15 @@ import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 
 import "./App.css"
+import { useAppSelector } from "./app/hooks"
 import { MenuAppBar } from "./MenuAppBar"
 import { BusSchedule } from "./features/bus/BusSchedule"
 import { RouteDialog } from "./features/bus/RouteDialog"
 import { ConfirmProvider } from "./features/confirm/"
+import {
+  selectOpen,
+} from "./features/bus/editDialogSlice"
+
 import { useAuth } from "react-oidc-context"
 import { Backdrop, Box, Button, CircularProgress, Paper } from "@mui/material"
 
@@ -17,6 +22,7 @@ export const darkTheme = createTheme({
 
 export const App = () => {
   const auth = useAuth()
+  const open = useAppSelector(selectOpen)
 
   const loginPanel = () => {
     let loading = false
@@ -69,7 +75,7 @@ export const App = () => {
           {auth.isAuthenticated ? (
             <>
               <BusSchedule />
-              <RouteDialog />
+              {open && <RouteDialog />}
             </>
           ) : (
             <Paper
